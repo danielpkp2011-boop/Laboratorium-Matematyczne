@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laboratorium Matematyczne</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="stopkadln">
+        <h4 class="wit"><b>Dzień dobry</b>, witam Państwa! Zapraszam do objerzenia mojej oferty.</h4>
+    </div>
+    <nav class="navbar">
+        <div class="nav-brand">
+            <img src="logo.png" alt="logo" class="logo">
+            <span class="brand-text">Laboratorium Matematyczne</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="oferta.html">Oferta</a></li>
+            <li><a href="ozaj.html">O zajęciach</a></li>
+            <li><a href="materialy.html">Materiały</a></li>
+            <li><a href="labmath.html">LabMath</a></li>
+            
+
+
+        </ul>
+    </nav>
+    <div class="stopkagr">
+        <h4 class="l">Aktualnie trwa promocja na lekcję próbną! Zwrot środków w przypadku niezadowolenia! Cena regularna <s>50,00</s> 30,00 PLN/1hr</h4>
+    </div>
+    <style>
+  /* --- GŁÓWNY DIV / KARTA (Całkowicie niezależny od reszty strony) --- */
+  .moj-glass-card {
+    position: relative;
+    width: calc(100% - 30px);
+    max-width: 700px;
+    margin: 15px auto;
+    padding: 28px;
+    border-radius: 24px;
+    box-sizing: border-box;
+    
+    /* Półprzezroczyste białe szkło (glassmorphism) z rozmyciem */
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    
+    /* Subtelna ramka i cień */
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    
+    /* Płynna animacja przy najechaniu */
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+                border-color 0.4s ease,
+                box-shadow 0.4s ease;
+    overflow: hidden;
+    
+    /* Lokalna czcionka i kolor tekstu */
+    font-family: 'rajdhani', sans-serif;
+    color: #ffffff;
+    text-align: left;
+  }
+
+  /* Reset marginesów i paddingów wyłącznie dla elementów wewnątrz tej karty */
+  .moj-glass-card * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Efekt podświetlenia krawędzi po najechaniu myszką */
+  .moj-glass-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.2) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+  }
+
+  .moj-glass-card:hover {
+    transform: translateY(-6px) scale(1.01);
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3),
+                0 0 25px rgba(255, 255, 255, 0.15);
+  }
+
+  .moj-glass-card:hover::before {
+    opacity: 1;
+  }
+
+  /* GÓRA: Nagłówek */
+  .moj-glass-card .moj-card-title {
+    font-size: 1.5rem;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    margin-bottom: 20px;
+    text-align: center;
+    line-height: 1.3;
+    color: #ffffff;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  /* ŚRODEK: Układ (Obraz po lewej, tekst po prawej) */
+  .moj-glass-card .moj-card-body {
+    display: grid;
+    grid-template-columns: minmax(120px, 160px) 1fr;
+    gap: 20px;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  /* Kontener na obrazek */
+  .moj-glass-card .moj-image-container {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.05);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .moj-glass-card .moj-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .moj-glass-card:hover .moj-image-container img {
+    transform: scale(1.05);
+  }
+
+  /* Tekst po prawej stronie (mniejszy) */
+  .moj-glass-card .moj-side-text {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  /* DÓŁ: Tekst na całej długości */
+  .moj-glass-card .moj-card-footer-text {
+    width: 100%;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  /* Responsywność dla telefonów */
+  @media (max-width: 550px) {
+    .moj-glass-card {
+      padding: 20px;
+    }
+
+    .moj-glass-card .moj-card-body {
+      grid-template-columns: 1fr;
+      justify-items: center;
+      text-align: center;
+    }
+
+    .moj-glass-card .moj-image-container {
+      max-width: 180px;
+    }
+
+    .moj-glass-card .moj-card-title {
+      font-size: 1.3rem;
+    }
+  }
+</style>
+
+<!-- KOD HTML DIVA -->
+<div class="moj-glass-card">
+  
+  <!-- Góra: Tytuł -->
+  <h2 class="moj-card-title">Moja oferta korepetycji dla Państwa</h2>
+
+  <!-- Środek: Puste miejsce na obraz po lewej, tekst po prawej -->
+  <div class="moj-card-body">
+    <div class="moj-image-container">
+      <!-- WKLEJ LINK DO OBRAZKA W src="" -->
+      <img src="" alt="Chwileczkę... System przetwarza zdięcie">
+    </div>
+    
+    <div class="moj-side-text">
+      <p><b>Dzień dobry,</b></p><p>Szanowni Państwo, mam zaszczyt przedstawić Państwu ofertę moich usług w formie strony internetowej. Zachęcam do obejrzenia na spokojnie mojej oferty. <br><i><b>Mimo tego,</b> że jestem młody, zapraszam do wpółpracy</i>, gdyż posiadam wysokie <b>doświadczenie</b> w nauce innych, oraz bardzo potrzebne <u>prywatne materiały do każdej lekcji</u>.</p>
+    </div>
+  </div>
+
+  <!-- Dół: Tekst na całej długości diva -->
+  <div class="moj-card-footer-text">
+    <!-- <p>Zobacz także: <b><u>Przygotowania do egzaminu ósmoklasisty dla klas ósmych, Zajęcia dodatkowe dla uczniów klas 6-8 [Indywidualne/grupowe (2-8os)],</u> Konkursy z nagrodami dla uczestników </b></p> -->
+  <p>Proszę zważyć także na: <br><b>Profesjonalne przygotowanie do egzaminu ósmoklasisty,</b></p><p class="v1">Zajęcia dodatkowe dla uczniów klas 6-8 SP,</p>
+  <p class="v2">Zajęcia wyrównawncze dla uczniów klas 4-8 SP,</p>  
+  <p class="v3">Dodatkowe konkursy z nagrodami dla klientów,</p>
+  <p class="v4">Zajęcia grupowe (2-8os) edukacyjne z Matematyki</p>
+</div>
+
+</div>
+
+
+
+
+<footer class="moja-przyklejona-stopka">
+  <div class="stopka-zawartosc">
+    <span class="f">&copy; 2026 Laboratorium Matematyczne. Wszelkie prawa zastrzeżone.</span>
+    <span>|</span>
+    <a href="prywatnoscireg.html" class="f">Prywatność i aspekty prawne</a>
+    <span>|</span>
+    <a href="kontakt.html" class="f">KONTAKT & FAQ</a>
+  </div>
+</footer>
+<script>
+
+  alert("Proszę kliknąć 'OK' aby wejść na stronę! Dzień dobry, cieszę się, że znaleźli Państwo czas. Pragnę poinformować, że strona jest jeszcze w fazie testów, wkrótce wszystko wróci do normy.")
+</script>
+    
+</body>
+</html>
