@@ -203,7 +203,7 @@ body {
     z-index: 9999;    /* Zapewnia, że stopka będzie zawsze na wierzchu */
     
     /* Wymiary: niewielka wysokość */
-    padding: 12px 5px;
+    padding: 12px 8px;
     box-sizing: border-box;
     
     /* Wygląd: Półprzezroczyste szkło pasujące do karty */
