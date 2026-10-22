@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laboratorium Matematyczne</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="stopkadln">
+        <h4 class="wit"><b>Podstrona: Oferta</b>, zobacz jakimi usługami dysponuję oraz ich szczegóły</h4>
+    </div>
+    <nav class="navbar">
+        <div class="nav-brand">
+            <a href="index.html"><img src="logo.png" alt="logo" class="logo"></a>
+            <span class="brand-text">Laboratorium Matematyczne</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html"> Str. Główna</a></li>
+            <li><a href="oferta.html">Oferta</a></li>
+            <li><a href="ozaj.html">O zajęciach</a></li>
+            <li><a href="labmath.html">LabMath</a></li>
+            <li><a href="prywatnoscireg.html">Regulamin i aspekty prawne</a></li>
+            <li><a href="kontakt.html">Kontakt</a></li> 
+            
+
+
+        </ul>
+    </nav>
+    <div class="stopkagr">
+        <h5 class="l">Możliwość rezerwacji jedynie przez kontakt telefoniczny, przepraszamy.</h5>
+    </div>
+    <!-- STYLE CSS DLA SEKCJI OFERTY -->
+<style>
+  /* KONTENER DLA DWÓCH KART (OBOK SIEBIE LUB W PIONIE NA TELEFONIE) */
+  .oferta-kontener {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    width: 85%;
+    max-width: 1100px;
+    margin: 20px auto;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+
+  /* GŁÓWNA KARTA OFERTY (GLASSMORPHISM) */
+  .oferta-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px 14px 13px 14px !important;
+    border-radius: 20px;
+    box-sizing: border-box;
+
+    background: rgba(255, 255, 255, 0.07);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+    color: #ffffff;
+    overflow: hidden;
+
+    transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+  }
+
+  /* Reset marginesów wewnątrz karty */
+  .oferta-card * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* POŚWIATA PO NAJECHANIU MYSZKĄ */
+  .oferta-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.12) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+  }
+
+  .oferta-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.3), 0 0 25px rgba(255, 255, 255, 0.1);
+  }
+
+  .oferta-card:hover::before {
+    opacity: 1;
+  }
+
+  /* 1. TYTUŁ */
+  .oferta-title-o {
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: 0.8px;
+    margin-bottom: 8px;
+    color: #cb2626;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+  .oferta-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: 0.8px;
+    margin-bottom: 8px;
+    color: #ffffff;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  /* SEPARUJĄCA LINIA POD TYTUŁEM */
+  .oferta-divider {
+    width: 70px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+    margin: 0 auto 16px auto;
+    border-radius: 2px;
+  }
+
+  /* 2. OPIS */
+  .oferta-opis {
+    font-size: 0.88rem;
+    line-height: 1.45;
+    color: rgba(255, 255, 255, 0.82);
+    margin-bottom: 20px;
+    text-align: left;
+  }
+
+  /* 3. TABELA SPECYFIKACJI (STYL ALLEGRO) */
+  .oferta-specyfikacja {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 4px;
+  }
+
+  .oferta-spec-wiersz {
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15); /* Pozioma linia podziału */
+  }
+
+  .oferta-spec-wiersz:last-child {
+    border-bottom: none; /* Brak linii na samym dole tabeli */
+  }
+
+  .oferta-spec-etykieta {
+    width: 45%;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding-right: 12px;
+    border-right: 1px solid rgba(255, 255, 255, 0.2); /* Pionowa środkowa kreska */
+  }
+
+  .oferta-spec-wartosc {
+    width: 55%;
+    font-size: 0.88rem;
+    color: rgba(255, 255, 255, 0.95);
+    padding-left: 12px;
+    word-break: break-word;
+  }
+
+  /* 4. DOLNA SEKCJA: CENA + PRZYCISK ZAMÓW */
+  .oferta-stopka-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 12px;
+    padding-top: 10px;
+    border-top: 1px dashed rgba(255, 255, 255, 0.18);
+  }
+
+  /* BLOK CENY */
+  .oferta-cena-box {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    padding-bottom: 5px !important; 
+  }
+
+  /* STARY CENA (PRZECENA) */
+  .oferta-cena-stara {
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.55);
+    
+    display: inline-flex;
+    align-items: baseline;
+    gap: 2px;
+  }
+  .oferta-cena-stara sup{
+    font-size: 0.75rem;
+    vertical-align: baseline;
+  }
+
+  /* AKTUALNA CENA Z NIŻSZYMI GROSZAMI */
+  .oferta-cena-glowna {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1;
+    display: inline-flex;
+    align-items: baseline; /* Wyrównuje cyfry i grosze do wspólnej dolnej linii */
+    gap: 2px;
+  }
+
+  .oferta-cena-glowna sup {
+    font-size: 0.9rem;
+    font-weight: 600;
+    vertical-align: baseline;
+  }
+
+  /* PRZYCISK ZAMÓW */
+  .oferta-przycisk {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 22px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.6px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease, border-color 0.3s ease;
+    margin-bottom: 4px;
+    
+  }
+  .oferta-przycisk-b{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 22px;
+    background: rgba(4, 4, 4, 0);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    color: #ffffff61;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.6px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease, border-color 0.3s ease;
+    margin-bottom: 4px;
+    
+  }
+
+  .oferta-przycisk-vv {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 22px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.6px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease, border-color 0.3s ease;
+    margin-bottom:16px;
+  }
+    .oferta-przycisk-vv {
+      padding: 9px 18px;
+      font-size: 0.85rem;
+    }
+  
+
+
+  .oferta-przycisk:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.6);
+    transform: translateY(-2px);
+  }
+
+  /* RESPONSOWNOŚĆ TELEFONICZNA */
+  @media (max-width: 550px) {
+    .oferta-kontener {
+      width: calc(100% - 24px);
+      margin: 15px auto;
+    }
+
+    .oferta-card {
+      padding: 20px 16px;
+    }
+
+    .oferta-spec-etykieta {
+      font-size: 0.8rem;
+    }
+
+    .oferta-spec-wartosc {
+      font-size: 0.83rem;
+    }
+
+    .oferta-cena-glowna {
+      font-size: 1.4rem;
+    }
+
+    .oferta-przycisk {
+      padding: 9px 18px;
+      font-size: 0.85rem;
+    }
+  }
+</style>
+
+<!-- KOD HTML SEKCJI (DWA DIVE / KARTY OFERTY) -->
+<div class="oferta-kontener">
+
+  <!-- ================= KARTA OFERTY 1 ================= -->
+  <div class="oferta-card">
+    <div>
+      <!-- Tytuł i linia -->
+      <h3 class="oferta-title-o">Pokazowa lekcja próbna </h3>
+      <div class="oferta-divider"></div>
+
+      <!-- Opis na 3-4 linijki -->
+      <p class="oferta-opis">
+        To świetna możliwość, w promocji, aby skorzystać, przekonać się do oferowanych przeze mnie usług edukacyjnych. Na owych zajęciach przedstawię swój plan działania, ale także dostosujemy go do Państwa potrzeb i wymagań. Zapisy trwają <b>do 3 listopada</b> bieżącego roku.
+      </p>
+
+      <!-- Specyfikacja w stylu Allegro (Tabela z kreską pośrodku) -->
+      <div class="oferta-specyfikacja">
+        
+        <!-- Wiersz 1 -->
+        <div class="oferta-spec-wiersz">
+          <div class="oferta-spec-etykieta">Rodzaj spotkania</div>
+          <div class="oferta-spec-wartosc">Lekcja próbna online</div>
+        </div>
+
+        <!-- Wiersz 2 -->
+        <div class="oferta-spec-wiersz">
+          <div class="oferta-spec-etykieta">Typ</div>
+          <div class="oferta-spec-wartosc">Instruktaż nauki podczas zajęć</div>
+        </div>
+
+        <!-- Wiersz 3 (Łatwe dodawanie kolejnych) -->
+        <div class="oferta-spec-wiersz">
+          <div class="oferta-spec-etykieta">Czas trwania / Wymiar</div>
+          <div class="oferta-spec-wartosc">1 GODZINA</div>
+        </div>
+
+        <!-- Wiersz 4 -->
+        <div class="oferta-spec-wiersz">
+          <div class="oferta-spec-etykieta">Poziom</div>
+          <div class="oferta-spec-wartosc">Nie dotyczy</div>
+        </div>
+        <div class="oferta-spec-wiersz">
+          <div class="oferta-spec-etykieta">Status</div>
+          <div class="oferta-spec-wartosc">DOSTĘPNY, po rabatach</div>
+        </div>
+        <div class="oferta-spec-wiersz">
+          <div class="oferta-spec-etykieta">Dostęność</div>
+          <div class="oferta-spec-wartosc">Dla uczniów klas 4-8 SP</div>
+        </div>
+        <div class="oferta-spec-wiersz">
+          <div class="oferta-spec-etykieta">Zwrot środków</div>
+          <div class="oferta-spec-wartosc">Tak, w przypadku niezadowolenia po wypełnieniu formularza</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Stopka karty: Cena + Przycisk -->
+    <div class="oferta-stopka-card">
+      <div class="oferta-cena-box">
+        <!-- Przecena w nawiasie -->
+        <span class="oferta-cena-stara"><s>(50<sup>,00</sup> PLN)</s>  [RABAT -60% (-30zł) TANIEJ] </span><span class="b"></span>
+        <!-- Cena aktualna z wyższymi/mniejszymi groszami -->
+        <span class="oferta-cena-glowna">20,<sup>00 PLN</sup> </span><span class="t">W cenie: PIT 12% (2,14zł)</span>
+      </div>
+
+        <a href="#" class="oferta-przycisk" onclick="otworzModal(event)">ZAMÓW</a>
+        <!-- OKIENKO POP-UP (MODAL) Z KOMUNIKATEM -->
+        <dialog id="ofertaModal" class="oferta-modal">
+        <div class="oferta-modal-content">
+        <h3 class="oferta-modal-title">Zainteresowałem ofertą?</h3>
+        <div class="oferta-modal-divider"></div>
+        <p class="oferta-modal-text">Proszę kontaktować się pod numer telefonu:<br>Koszt połączenia: <b>0,00zł</b> 24h/7</p>
+        <!-- Kliknięcie w ten numer od razu uruchomi połączenie w telefonie! -->
+        <a href="tel:+48123456789" class="oferta-modal-telefon">(+48) 662-420-650</a>
+        
+        <button class="oferta-modal-zamknij" onclick="zamknijModal()">OK, rozumiem</button>
+    </div>
+    </dialog>
+    </div>
+  </div>
+
+
+  <!-- ================= KARTA OFERTY 2 ================= -->
+  <div class="oferta-card">
+    <div>
+      <h3 class="oferta-title">LabMath: Przygotowanie do E8</h3>
+      <div class="oferta-divider"></div>
+
+      <p class="oferta-opis">
+        Mają Państwo problem z przygotowaniem do tego ważnego egzaminu? Nic straconego! To świetna oferta, aby nadrobić zaległości, a nawet być szóstkowym uczniem! To najlepsza oferta, aby zacząć, nadrobić to, czego system edukacji nie nauczy. W pakiecie LabMath Homework.
+      </p>
+
+      <div class="oferta-specyfikacja">
+        
+        <div class="oferta-spec-wiersz">
+          <div class="oferta-spec-etykieta">Rodzaj spotkania</div>
+          <div class="oferta-spec-wartosc">Korepetycje Matematyczne E8</div>
+        </div>
+
+        <div class="oferta-spec-wiersz">
+          <div class="oferta-spec-etykieta">Rodzaj</div>
+          <div class="oferta-spec-wartosc">Pakiet LabMath + lekcje online </div>
+        </div>
+
+        <div class="oferta-spec-wiersz">
+          <div class="oferta-spec-etykieta">Wymiar godzinny:</div>
+          <div class="oferta-spec-wartosc">1h; 1,5h; <b>2h</b><i> [Zalecane]; </i>3h </div>
+        </div>
+
+        <div class="oferta-spec-wiersz">
+          <div class="oferta-spec-etykieta">Materiały</div>
+          <div class="oferta-spec-wartosc">W cenie zestawu</div>
+        </div>
+        <div class="oferta-spec-wiersz">
+          <div class="oferta-spec-etykieta">Poziom</div>
+          <div class="oferta-spec-wartosc">Rozszerzony</div>
+        </div>
+        <div class="oferta-spec-wiersz">
+          <div class="oferta-spec-etykieta">Dostępność</div>
+          <div class="oferta-spec-wartosc">Wyłącznie dla ucznów 8 Kl. SP</div>
+        </div>
+        <div class="oferta-spec-wiersz">
+          <div class="oferta-spec-etykieta">Płatność</div>
+          <div class="oferta-spec-wartosc">Jednorazowa (1/1)</div>
+        </div>
+        <div class="oferta-spec-wiersz">
+          <div class="oferta-spec-etykieta">Subskrybcja mieś.</div>
+          <div class="oferta-spec-wartosc">Możliwa (10% rabatu)</div>
+        </div>
+        
+
+      </div>
+    </div>
+
+    <div class="oferta-stopka-card">
+      <div class="oferta-cena-box">
+        <span class="vvf">Cena w wymiarze 1 godziny</span>
+        <span class="oferta-cena-stara"><s>(60<sup>,00</sup> PLN)</s> [RABAT DLA PIERWSZYCH]</span>
+        <span class="oferta-cena-glowna">50,<sup>00 PLN</sup></span><span class="t">W cenie: PIT 12% (5,36zł)</span>
+      </div>
+
+        <a href="#" class="oferta-przycisk" onclick="otworzModal(event)">ZAMÓW</a>
+        <!-- OKIENKO POP-UP (MODAL) Z KOMUNIKATEM -->
+        <dialog id="ofertaModal" class="oferta-modal">
+        <div class="oferta-modal-content">
+        <h3 class="oferta-modal-title">Zainteresowałem ofertą?</h3>
+        <div class="oferta-modal-divider"></div>
+        <p class="oferta-modal-text">Proszę kontaktować się pod numer telefonu:<br>Koszt połączenia: <b>0,00zł</b> 24h/7</p>
+        <!-- Kliknięcie w ten numer od razu uruchomi połączenie w telefonie! -->
+        <a href="tel:+48123456789" class="oferta-modal-telefon">(+48) 662-420-650</a>
+        
+        <button class="oferta-modal-zamknij" onclick="zamknijModal()">OK, rozumiem</button>
+    </div>
+    </dialog>
+    </div>
+    
+  </div>
+  <div class="oferta-card">
+    <div>
+      <h3 class="oferta-title">LabMath: Korepetycje 'szkolne'</h3>
+      <div class="oferta-divider"></div>
+
+      <p class="oferta-opis">
+        Korepetycje <b>szkolne</b> to idealna oferta, dla osób, które mają problemy <b>na poziomie podstawowym</b> (opisane w zakładce: o zajęciach), w szkole z Matematyką. Jestem tu po to, żeby pomóc! W pakiecie: LabMath Homework. Pakiet służy do nauki podstaw z danej dziedziny tejże <b>królowej nauk.</b>
+      </p>
+
+      <div class="oferta-specyfikacja">
+        
+        <div class="oferta-spec-wiersz">
+          <div class="oferta-spec-etykieta">Rodzaj spotkania</div>
+          <div class="oferta-spec-wartosc">Korepetycje Matematyczne</div>
+        </div>
+
+        <div class="oferta-spec-wiersz">
+          <div class="oferta-spec-etykieta">Rodzaj</div>
+          <div class="oferta-spec-wartosc">Pakiet LabMath + lekcje online </div>
+        </div>
+
+        <div class="oferta-spec-wiersz">
+          <div class="oferta-spec-etykieta">Wymiar godzinny:</div>
+          <div class="oferta-spec-wartosc">1h; 1,5h; 2h; <b>3h<i> [Zalecane]</i>
+        </b> </div>
+        </div>
+
+        <div class="oferta-spec-wiersz">
+          <div class="oferta-spec-etykieta">Materiały</div>
+          <div class="oferta-spec-wartosc">W zestawie + LabMath Homework</div>
+        </div>
+        <div class="oferta-spec-wiersz">
+          <div class="oferta-spec-etykieta">Poziom</div>
+          <div class="oferta-spec-wartosc">Podstawowy / Rozszerzony</div>
+        </div>
+        <div class="oferta-spec-wiersz">
+          <div class="oferta-spec-etykieta">Dostępność</div>
+          <div class="oferta-spec-wartosc">Dla uczniów kl. 4-8 SP</div>
+        </div>
+        <div class="oferta-spec-wiersz">
+          <div class="oferta-spec-etykieta">Płatność</div>
+          <div class="oferta-spec-wartosc">Jednorazowa (1/1)</div>
+        </div>
+        <div class="oferta-spec-wiersz">
+          <div class="oferta-spec-etykieta">Subskrybcja mieś.</div>
+          <div class="oferta-spec-wartosc">Możliwa (5% rabatu)</div>
+        </div>
+        
+
+      </div>
+    </div>
+
+    <div class="oferta-stopka-card">
+      <div class="oferta-cena-box">
+        <span class="vvf">Cena w wymiarze 1 godziny [PODSTAWOWY]</span>
+        <span class="oferta-cena-stara"><s>(65<sup>,00</sup> PLN)</s> [RABAT DLA PIERWSZYCH]</span>
+        <span class="oferta-cena-glowna">60,<sup>00 PLN</sup></span><span class="t2">W cenie: PIT 12% (6,43zł)</span>
+      </div>
+
+        <a href="#" class="oferta-przycisk-vv" onclick="otworzModal(event)">ZAMÓW</a>
+        <!-- OKIENKO POP-UP (MODAL) Z KOMUNIKATEM -->
+        <dialog id="ofertaModal" class="oferta-modal">
+        <div class="oferta-modal-content">
+        <h3 class="oferta-modal-title">Zainteresowałem ofertą?</h3>
+        <div class="oferta-modal-divider"></div>
+        <p class="oferta-modal-text">Proszę kontaktować się pod numer telefonu:<br>Koszt połączenia: <b>0,00zł</b> 24h/7</p>
+        <!-- Kliknięcie w ten numer od razu uruchomi połączenie w telefonie! -->
+        <a href="tel:+48123456789" class="oferta-modal-telefon">(+48) 662-420-650</a>
+        
+        <button class="oferta-modal-zamknij" onclick="zamknijModal()">OK, rozumiem</button>
+    </div>
+    </dialog>
+    </div>
+    <div class="oferta-stopka-card">
+      <div class="oferta-cena-box">
+        <span class="vvf">Cena w wymiarze 1 godziny [ROZSZERZONY]</span>
+        <span class="oferta-cena-stara"><s>(70<sup>,00</sup> PLN)</s> [RABAT DLA PIERWSZYCH]</span>
+        <span class="oferta-cena-glowna">65,<sup>00 PLN</sup></span><span class="t">W cenie: PIT 12% (6,96zł)</span>
+      </div>
+
+        <a href="#" class="oferta-przycisk" onclick="otworzModal(event)">ZAMÓW</a>
+        <!-- OKIENKO POP-UP (MODAL) Z KOMUNIKATEM -->
+        <dialog id="ofertaModal" class="oferta-modal">
+        <div class="oferta-modal-content">
+        <h3 class="oferta-modal-title">Zainteresowałem ofertą?</h3>
+        <div class="oferta-modal-divider"></div>
+        <p class="oferta-modal-text">Proszę kontaktować się pod numer telefonu:<br>Koszt połączenia: <b>0,00zł</b> 24h/7</p>
+        <!-- Kliknięcie w ten numer od razu uruchomi połączenie w telefonie! -->
+        <a href="tel:+48123456789" class="oferta-modal-telefon">(+48) 662-420-650</a>
+        
+        <button class="oferta-modal-zamknij" onclick="zamknijModal()">OK, rozumiem</button>
+    </div>
+    </dialog>
+    </div>
+    
+  </div>
+
+  <div class="oferta-card">
+    <div>
+        <h5 class="new">NOWOŚĆ! Profesjonalne zajęcia w świetnej cenie!</h5>
+        <h3 class="oferta-title">LabMath: Zajęcia grupowe</h3>
+      <div class="oferta-divider"></div>
+
+      <p class="oferta-opis">
+        To świetna okazja do rozwoju intelektualnego (poznawczego) każdego ucznia w obrębie wielu dziedzin Matematyki. Na zajęciach będziemy poszerzać znajomość królowej nauk ścisłych i zdobywać niesamowitą wiedzę.
+      </p>
+
+      <div class="oferta-specyfikacja">
+        
+        <div class="oferta-spec-wiersz">
+          <div class="oferta-spec-etykieta">Rodzaj spotkania</div>
+          <div class="oferta-spec-wartosc">Zajęcia dodatkowe</div>
+        </div>
+
+        <div class="oferta-spec-wiersz">
+          <div class="oferta-spec-etykieta">Rodzaj</div>
+          <div class="oferta-spec-wartosc">Grupowe (2-8os.); Online </div>
+        </div>
+
+        <div class="oferta-spec-wiersz">
+          <div class="oferta-spec-etykieta">Wymiar godzinny:</div>
+          <div class="oferta-spec-wartosc"><b>2hr /tydz</b> lub <b>2hr /2tyg</b></div>
+        </div>
+
+        <div class="oferta-spec-wiersz">
+          <div class="oferta-spec-etykieta">Materiały</div>
+          <div class="oferta-spec-wartosc">W cenie zestawu i LabMath+</div>
+        </div>
+        <div class="oferta-spec-wiersz">
+          <div class="oferta-spec-etykieta">Poziom</div>
+          <div class="oferta-spec-wartosc">Dla chętnych rozwoju</div>
+        </div>
+        <div class="oferta-spec-wiersz">
+          <div class="oferta-spec-etykieta">Dostępność</div>
+          <div class="oferta-spec-wartosc">Dla uczniów klas <b>6,7,8 SP</b></div>
+        </div>
+        <div class="oferta-spec-wiersz">
+          <div class="oferta-spec-etykieta">Płatność</div>
+          <div class="oferta-spec-wartosc">Jednorazowa (1x1h lub 1x2h)</div>
+        </div>
+        <div class="oferta-spec-wiersz">
+          <div class="oferta-spec-etykieta">Subskrybcja mieś.</div>
+          <div class="oferta-spec-wartosc">Wymagana, co 4 pełne tyg.</div>
+        </div>
+        
+
+      </div>
+    </div>
+
+    <div class="oferta-stopka-card">
+      <div class="oferta-cena-box">
+        <span class="vvf">Cena w wymiarze 1 godziny</span>
+        
+        <span class="oferta-cena-glowna">34,<sup>90 PLN</sup></span><span class="t">W cenie: PIT 12% (3,74zł)</span>
+      </div>
+
+        <a href="#" class="oferta-przycisk" onclick="otworzModal(event)">ZAMÓW</a>
+        <!-- OKIENKO POP-UP (MODAL) Z KOMUNIKATEM -->
+        <dialog id="ofertaModal" class="oferta-modal">
+        <div class="oferta-modal-content">
+        <h3 class="oferta-modal-title">Zainteresowałem ofertą?</h3>
+        <div class="oferta-modal-divider"></div>
+        <p class="oferta-modal-text">Proszę kontaktować się pod numer telefonu:<br>Koszt połączenia: <b>0,00zł</b> 24h/7</p>
+        <!-- Kliknięcie w ten numer od razu uruchomi połączenie w telefonie! -->
+        <a href="tel:+48123456789" class="oferta-modal-telefon">(+48) 662-420-650</a>
+        
+        <button class="oferta-modal-zamknij" onclick="zamknijModal()">OK, rozumiem</button>
+    </div>
+    </dialog>
+    </div>
+    
+  </div>
+  <!-- tutaj kolejny-->
+   <div class="oferta-card">
+    <div>
+        <h5 class="new">Wkrótce odbędzie się premiera!</h5>
+        <h3 class="oferta-title">Konkurs naukowy LabMath</h3>
+      <div class="oferta-divider"></div>
+
+      <p class="oferta-opis">
+        Konkurs w ramach rabatu dla uczestników planu (pakietu subskrybcji) jakiejkolwiek oferty zajęć. Planowana data oraz forma zostaną ogłoszone wkrótce.
+      </p>
+
+      <div class="oferta-specyfikacja">
+        
+        <div class="oferta-spec-wiersz">
+          <div class="oferta-spec-etykieta">Rodzaj</div>
+          <div class="oferta-spec-wartosc">Konkurs dodatkowy</div>
+        </div>
+
+
+        <div class="oferta-spec-wiersz">
+          <div class="oferta-spec-etykieta">Materiały</div>
+          <div class="oferta-spec-wartosc">Będą dostępne na stronie</div>
+        </div>
+        <div class="oferta-spec-wiersz">
+          <div class="oferta-spec-etykieta">Zakres</div>
+          <div class="oferta-spec-wartosc">Skalowany wiekiem, przeliczany </div>
+        </div>
+        <div class="oferta-spec-wiersz">
+          <div class="oferta-spec-etykieta">Dostępność</div>
+          <div class="oferta-spec-wartosc">Dla uczniów klas <b>4-8 SP</b></div>
+        </div>
+        <div class="oferta-spec-wiersz">
+          <div class="oferta-spec-etykieta">Płatność</div>
+          <div class="oferta-spec-wartosc">Konkurs darmowy</div>
+        </div>
+        <div class="oferta-spec-wiersz">
+          <div class="oferta-spec-etykieta">Przeznaczony</div>
+          <div class="oferta-spec-wartosc">Dla klientów subskrypcji </div>
+        </div>
+        
+
+      </div>
+    </div>
+
+    <div class="oferta-stopka-card">
+      <div class="oferta-cena-box">
+        <span class="vvf">Cena brutto PLN</span>
+        
+        <span class="oferta-cena-glowna">0,<sup>00 PLN</sup></span><span class="t">W cenie: PIT 12% (0,00zł)</span>
+      </div>
+
+        <a class="oferta-przycisk-b">WKRÓTCE</a>
+        
+    </div>
+    
+  </div>
+  <!--Tutaj kolejny-->
+</div>
+
+
+
+
+
+
+
+
+<footer class="moja-przyklejona-stopka">
+  <div class="stopka-zawartosc">
+    <span class="f">&copy; 2026 Laboratorium Matematyczne</span>
+    
+    <span class="f">LabMath: Obowiązują prawa autorskie</span>
+    
+    
+  </div>
+</footer>
+
+
+
+<style>
+  /* STYL DLA OKIENKA POP-UP */
+  .oferta-modal {
+    border: none;
+    background: rgba(20, 35, 30, 0.85); /* Ciemne, półprzezroczyste tło pasujące do zielonego motywu */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 20px;
+    padding: 30px;
+    width: 90%;
+    max-width: 400px;
+    color: #ffffff;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    font-family: system-ui, -apple-system, sans-serif;
+    
+    /* Wyśrodkowanie okienka i animacja pojawiania */
+    margin: auto;
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.3s ease, transform 0.3s ease, overlay 0.3s ease allow-discrete, display 0.3s ease allow-discrete;
+  }
+
+  /* Stan otwarty okienka */
+  .oferta-modal[open] {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  /* Tło za okienkiem (backdrop) */
+  .oferta-modal::backdrop {
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    transition: opacity 0.3s ease;
+  }
+
+  .oferta-modal-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .oferta-modal-divider {
+    width: 50px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+    margin: 0 auto 16px auto;
+    border-radius: 2px;
+  }
+
+  .oferta-modal-text {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 14px;
+  }
+
+  /* Wygląd numeru telefonu w pop-upie */
+  .oferta-modal-telefon {
+    display: inline-block;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #ffffff;
+    text-decoration: none;
+    margin-bottom: 24px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    transition: opacity 0.2s ease;
+  }
+
+  .oferta-modal-telefon:hover {
+    opacity: 0.85;
+    text-decoration: underline;
+  }
+
+  /* Przycisk zamknięcia */
+  .oferta-modal-zamknij {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+  }
+
+  .oferta-modal-zamknij:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+  }
+</style>
+
+<!-- SKRYPT JAVASCRIPT OBSŁUGUJĄCY OKIENKO -->
+<script>
+  function otworzModal(event) {
+    event.preventDefault(); // Zablokowanie domyślnego skoku linku
+    const modal = document.getElementById('ofertaModal');
+    modal.showModal(); // Natywne otwarcie okienka z przyciemnieniem tła
+  }
+
+  function zamknijModal() {
+    const modal = document.getElementById('ofertaModal');
+    modal.close(); // Zamknięcie okienka
+  }
+
+  // Zamknięcie okienka po kliknięciu w szare tło wokół niego
+  document.getElementById('ofertaModal').addEventListener('click', (event) => {
+    const dialogDimensions = event.target.getBoundingClientRect();
+    if (
+      event.clientX < dialogDimensions.left ||
+      event.clientX > dialogDimensions.right ||
+      event.clientY < dialogDimensions.top ||
+      event.clientY > dialogDimensions.bottom
+    ) {
+      event.target.close();
+    }
+  });
+</script>
+</body>
+</html>
